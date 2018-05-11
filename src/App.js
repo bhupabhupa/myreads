@@ -26,6 +26,7 @@ class App extends Component {
     }
 
   render() {
+        const { books } = this.state;
     return (
         <div>
             <div className="list-books-title">
@@ -33,16 +34,16 @@ class App extends Component {
             </div>
             <Route exact path="/" render={() => (
                 <div className="list-books-content">
-                    <BookList books={this.state.books} onStatusChange={this.changeHandler} title="Currently Reading" shelf="currentlyReading"/>
-                    <BookList books={this.state.books} onStatusChange={this.changeHandler} title="Want to Read" shelf="wantToRead"/>
-                    <BookList books={this.state.books} onStatusChange={this.changeHandler} title="Read" shelf="read"/>
+                    <BookList books={books} onStatusChange={this.changeHandler} title="Currently Reading" shelf="currentlyReading"/>
+                    <BookList books={books} onStatusChange={this.changeHandler} title="Want to Read" shelf="wantToRead"/>
+                    <BookList books={books} onStatusChange={this.changeHandler} title="Read" shelf="read"/>
                     <div  className="open-search">
                         <Link to="/search" />
                     </div>
                 </div>
             )}/>
             <Route path="/search" render={() => (
-                <SearchBooks books={this.state.books} onStatusChange={this.changeHandler}/>
+                <SearchBooks books={books} onStatusChange={this.changeHandler}/>
             )}/>
         </div>
     );

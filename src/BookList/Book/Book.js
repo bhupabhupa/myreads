@@ -6,6 +6,8 @@ class Book extends Component {
     }
     render() {
         const { book, onStatusChange } = this.props;
+
+        console.log(book);
         return (
             <div className="book">
                 <img src={book.imageLinks.smallThumbnail} alt={book.title}/>

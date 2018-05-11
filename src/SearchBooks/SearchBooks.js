@@ -10,21 +10,22 @@ class SearchBooks extends Component {
         noResults : true
     };
 
-    componentWillMount() {
-        const books = this.props.books;
-        this.setState({ books })
-    }
-
     updateQuery = (query) => {
         this.setState({ query: query });
         if (query) {
             BooksAPI.search(query, 10).then( (books) => {
                 if (books.error === 'empty query') {
                     this.setState({ noResults: true })
-                    //console.log('No Results');
-
                 } else {
                     this.setState({ noResults: false });
+                    books.map((book) => (
+                        this.props.books.map((propBook) => {
+                            if (propBook.id === book.id) {
+                                book.shelf = propBook.shelf;
+                            }
+                            return  book;
+                        }
+                    )));
                     this.setState({ books })
                 }
             })
